@@ -1,0 +1,12 @@
+1. sudo apt-get update
+
+   https://sites.google.com/site/raspberrypidiy/pc-to-rpi
+     
+2. install fttp server
+   a. sudo apt-get install vsftpd
+   b. sudo nano /etc/vsftpd.conf
+      remove "#" at line local enable =yes
+      remove "#" at line write enable =yes
+      local_enable=YES, write_enable=YES
+      
+   c. sudo service vsftpd restart

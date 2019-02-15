@@ -1,0 +1,6 @@
+﻿1. VisualBox share folder setting in UBUNTU:
+   a. sudo usermod -G vboxsf -a hant
+   b. restart UBUNTU
+   c. in /media/win_share_folder   can be used
+   
+2. 更改目錄權限 to hant groups : chown -R hant:hant /home/target_directory
