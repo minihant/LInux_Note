@@ -155,7 +155,7 @@ $ docker rm youthful_roentgen
 - You can start a new container and give it a name using the --name switch.
 - You can also use the --rm switch to create a container that removes itself when it's stopped
 
-## =========================================================	
+## ================================================	
 ## Step 7 — Committing Changes in a Container to a Docker Image
 
 - commit the changes to a new Docker image instance using the following command structure:
@@ -171,188 +171,258 @@ $ sudo docker commit -m "added node.js" -a "sammy" d9b100f2f636 sammy/ubuntu-nod
    [how-to-set-up-a-private-docker-registry]( https://www.digitalocean.com/community/tutorials/how-to-set-up-a-private-docker-registry-on-ubuntu-14-04)
 
 	- To push your image, first log into Docker Hub:
-		$ Docker login -u docker-registry-username
+	```
+	$ Docker login -u docker-registry-username
+	```
 		
-	* If your Docker registry username is different from the local username you used to create the image, 
+	- If your Docker registry username is different from the local username you used to create the image, 
 	  you will have to tag your image with your registry username. For the example given in the last step, you would type:
-	   $ docker tag sammy/ubuntu-nodejs docker-registry-username/ubuntu-nodejs
+	```
+	$ docker tag sammy/ubuntu-nodejs docker-registry-username/ubuntu-nodejs
+	```
 	   
-	* Then you can push your own image using:
+	- Then you can push your own image using:
+	```
 	   $ docker push docker-registry-username/ubuntu-nodejs
+	```
 	
-	* To push the ubuntu-nodejs image to the sammy repository, the command would be:
-		$ docker push sammy/ubuntu-nodejs   
+	- To push the ubuntu-nodejs image to the sammy repository, the command would be:
+	```
+	$ docker push sammy/ubuntu-nodejs
+	```
 
-//======================================================		
-Step 9 -- Execute docker image linux command
-//======================================================
-   *  $ docker exec cocker-image-name apt-get update
+## =========================================		
+## Step 9 -- Execute docker image linux command
+	```
+	$ docker exec cocker-image-name apt-get update
+	```
+	- Quick run an image 
+	```
+	sudo docker run -it -p 1880:1880 -p 1883:1883 --name mycontainer yourimage
+   	sudo docker tag {DOCKER_IMAGE_ID} {YOUR_ACCOUNT_NAME}/{REPOSITORY_NAME}:1.0.0
+	```
+## ============================= 
+## Node-Red operation
+	- Quick start a new node red
+	```
+	$ sudo docker run -it -p 1880:1880 --name mynodered nodered/node-red-docker 
+	```
+## ===================== 
+## Work with docker Hub
+	1. login to the Docker Hub
+	```
+   	sudo docker login
+	```
+        2. input your account name & password 
+		(minihant , hant8425)
+	3. tag your image
+	```
+	sudo docker tag image_id  minihant/repository:tag
+	```
+   	for example:
+	```
+	sudo docker tag image_id minihant/hant:1.0.0
+	```
    
+	4. push your tag image
+	```
+	$ sudo docker push minihant/hant:1.0.0
+	```
    
-//==========================================================  
-Quick start a new node red
-//============================================================
-	sudo docker run -it -p 1880:1880 --name mynodered nodered/node-red-docker 	
+	5. pull your docker hub image
+	```
+	$ sudo docker pull minihant/hant:1.0.0
+	```
 
-//===========================================================	
-Quick run an image 
-//=============================================================
-   sudo docker run -it -p 1880:1880 -p 1883:1883 --name mycontainer yourimage
-   sudo docker tag {DOCKER_IMAGE_ID} {YOUR_ACCOUNT_NAME}/{REPOSITORY_NAME}:1.0.0
-   
-//=============================================================
-//Work with docker Hub
-//==============================================
-1. login to the Docker Hub
-   $ sudo docker login
-     ==> input your account name & password 
-         (minihant , hant8425)
-2. tag your image
-   $ sudo docker tag image_id  minihant/repository:tag
-   for example:
-   $ sudo docker tag image_id minihant/hant:1.0.0
-   
-3. push your tag image
-   $ sudo docker push minihant/hant:1.0.0
-   
-4. pull your docker hub image
-   $ sudo docker pull minihant/hant:1.0.0
-
-//======================================================
-//-- 儲存 image 成 tar 檔案 -------
-// docker save [OPTIONS] IMAGE [IMAGE...]
-//======================================================
-	 $ sudo docker save busybox > busybox.tar
-
-//=====================================================
-//-- 載入 image
-// docker load [OPTIONS] -------------
-//====================================================
+## ==================================
+## Docker image 指令
+	- 儲存 image 成 tar 檔案 -------
+	-- docker save [OPTIONS] IMAGE [IMAGE...]
+	```
+	sudo docker save busybox > busybox.tar
+	```
+	- 載入 image
+	-- docker load [OPTIONS] -------------
+	```
 	$ sudo docker load < busybox.tar
+	```
 
 
-//===================================================
-//  Docker Volume 
-//==================================================
-1. 查看目前的 volume
-   $ sudo docker volume ls [OPTIONS]
+##================================ 
+##  Docker Volume 指令
+	1. 查看目前的 volume
+	```
+	$ sudo docker volume ls [OPTIONS]
+	```
 
-2. 創造一個 volume
-   $ sudo docker volume create [OPTIONS] [VOLUME]
+	2. 創造一個 volume
+	```
+	$ sudo docker volume create [OPTIONS] [VOLUME]
+	```
 
-3. 刪除一個 volume
-   $ sudo docker volume rm [OPTIONS] VOLUME [VOLUME...]
+	3. 刪除一個 volume
+	```
+	$ sudo docker volume rm [OPTIONS] VOLUME [VOLUME...]
+	```
 
-4. 查看 volume 詳細資料
+	4. 查看 volume 詳細資料
+	```
 	$ sudo docker volume inspect [OPTIONS] VOLUME [VOLUME...]
+	```
 
-5. 移除全部未使用的 volume
+	5. 移除全部未使用的 volume
+	```
 	$ sudo docker volume prune [OPTIONS]
+	```
 
-6. How to use volume in docker
-  $ sudo dockker run -it -v /etc/nginx/sites-available:/etc/nginx/sites-available --name ng nginx /bin/bash
-//===================================================
-//  Docker network 
-//===================================================
-1. 查看目前 docker 的網路清單
+	6. How to use volume in docker
+	```
+	$ sudo dockker run -it -v /etc/nginx/sites-available:/etc/nginx/sites-available --name ng nginx /bin/bash
+	```
+## ========================== 
+##  Docker network 指令
+	1. 查看目前 docker 的網路清單
+	```
 	$ sudo docker network ls [OPTIONS]
-2. 指定 network 範例 ( 指定使用 host 網路 )
+	```
+	2. 指定 network 範例 ( 指定使用 host 網路 )
+	```
 	$sudo docker run -it --name busybox --rm --network=host busybox
-3. 建立 network
+	```
+	3. 建立 network
+	```
 	$sudo docker network create [OPTIONS] NETWORK
-4. 移除 network
+	```
+	4. 移除 network
+	```
 	$sudo docker network rm NETWORK [NETWORK...]
-5. 移除全部未使用的 network
+	```
+	5. 移除全部未使用的 network
+	```
 	$sudo docker network prune [OPTIONS]
-6. 查看 network 詳細資料
+	```
+	6. 查看 network 詳細資料
+	```
 	$sudo docker network inspect [OPTIONS] NETWORK [NETWORK...]
-7. 將 container 連接 network
+	```
+	7. 將 container 連接 network
+	```
 	$sudo docker network connect [OPTIONS] NETWORK CONTAINER
+	```
+	8. User-defined networks
+	更多詳細資料可[參考](https://docs.docker.com/engine/userguide/networking/#user-defined-networks)
 
-8. User-defined networks
-   更多詳細資料可參考 https://docs.docker.com/engine/userguide/networking/#user-defined-networks
 
-
-//===================================================
-//  Docker-Compose 
-//  Compose 是定義和執行多 Container 管理的工具
-//===================================================
-透過 docker-compose.yml ( YML 格式 ) 文件。
-docker-compose.yml 的寫法可參考 https://docs.docker.com/compose/compose-file/
-也可以直接參考官網範例 https://docs.docker.com/compose/compose-file/#compose-file-structure-and-examples
-Compose 的 Command-line 可參考 https://docs.docker.com/glossary/?term=compose
-1. 查看目前 Container
+## ==================================
+## Docker-Compose 定義和執行多 Container 管理的工具
+	- 透過 docker-compose.yml ( YML 格式 ) 文件。
+	docker-compose.yml 的寫法可參考 https://docs.docker.com/compose/compose-file/
+	也可以直接參考官網範例 https://docs.docker.com/compose/compose-file/#compose-file-structure-and-examples
+	Compose 的 Command-line 可參考 https://docs.docker.com/glossary/?term=compose
+	1. 查看目前 Container
+	```
 	$ sudo docker-compose ps
 		加上 -q 的話，只顯示 id
+	
 	$ sudo docker-compose ps -q
-2. 啟動 Service 的 Container
+	```
+	2. 啟動 Service 的 Container
+	```
 	$ sudo docker-compose start  [SERVICE...]
-3. 停止 Service 的 Container ( 不會刪除 Container )
+	```
+	3. 停止 Service 的 Container ( 不會刪除 Container )
+	```
 	$ sudo docker-compose stop [options] [SERVICE...]
-4. 重啟 Service 的 Container
+	```
+	4. 重啟 Service 的 Container
+	```
 	$ sudo docker-compose restart [options] [SERVICE...]
 		 ==> Builds, (re)creates, starts, and attaches to containers for a service
 	$ sudo docker-compose up [options] [--scale SERVICE=NUM...] [SERVICE...]
  		加個 -d，會在背景啟動，一般建議正式環境下使用。
 	$ sudo docker-compose up -d
 		up 這個功能很強大，建議可以參考 https://docs.docker.com/compose/reference/up/
-5. docker-compose down
+	```
+	5. docker-compose down
+	```
 	$ sudo docker-compose down [options]
-		down 這個功能也建議可以參考 https://docs.docker.com/compose/reference/down/
-		舉個例子
-			$ sudo docker-compose down -v
-				加個 -v 就會順便幫你把 volume 移除（ 移除你在 docker-compose.yml 裡面設定的 volume ）
-				在指定的 Service 中執行一個指令
-				docker-compose run [options] [-v VOLUME...] [-p PORT...] [-e KEY=VAL...] SERVICE [COMMAND] [ARGS...] [ARGS...]
+	```
+	-- down 這個功能也建議可以參考 https://docs.docker.com/compose/reference/down/
+	舉個例子
+		$ sudo docker-compose down -v
+		加個 -v 就會順便幫你把 volume 移除（ 移除你在 docker-compose.yml 裡面設定的 volume ）
+		在指定的 Service 中執行一個指令
+		docker-compose run [options] [-v VOLUME...] [-p PORT...] [-e KEY=VAL...] SERVICE [COMMAND] [ARGS...] [ARGS...]
 	舉個例子
 		docker-compose run web bash
 		在 web Service 中執行 bash 指令
-		可參考 https://docs.docker.com/compose/reference/run/
+		可[參考](https://docs.docker.com/compose/reference/run/)
 		觀看 Service logs
 		docker-compose logs [options] [SERVICE...]
 
-6. 檢查 docker-compose.yml 格式是否正確
+	6. 檢查 docker-compose.yml 格式是否正確
+	```
 	$ sudo docker-compose config
-7. 如下指令，和 docker exec 一樣
+	```
+	7. 如下指令，和 docker exec 一樣
+	```
 	$ sudo docker-compose exec
 		範例 ( 進入 web 這個 service 的 bash )
-				$ sudo docker-compose exec web bash
-8. 顯示被使用到的 container 中的 images 清單
+	
+	$ sudo docker-compose exec web bash
+	```
+	8. 顯示被使用到的 container 中的 images 清單
+	```
 	$ sudo docker-compose images
-9. 移除 service containers
+	```
+	9. 移除 service containers
+	```
 	$ sudo docker-compose rm
-10. Pushes images 到 docker hub
+	```
+	10. Pushes images 到 docker hub
+	```
 	$ sudo docker-compose push
+	```
 
-//==========================================================
-install googlg cloud SDK in ubuntu
-//==========================================================
-	# Create environment variable for correct distribution
+## ================================
+## install googlg cloud SDK in ubuntu
+	-Create environment variable for correct distribution
+	```
 	export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
+	```
 
-	# Add the Cloud SDK distribution URI as a package source
+	- Add the Cloud SDK distribution URI as a package source
+	```
 	echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-
-	# Import the Google Cloud Platform public key
+	```
+	- Import the Google Cloud Platform public key
+	```
 	curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+	```
 
-	# Update the package list and install the Cloud SDK
+	- Update the package list and install the Cloud SDK
+	```
 	sudo apt-get update && sudo apt-get install google-cloud-sdk
+	```
 
-//=============================================
-Use google docker reporisity
-//==============================================
-1. $ sudo gcloud auth configure-docker
+## ============================
+## Use google docker reporisity
+	1. $ sudo gcloud auth configure-docker
 
-2. 將映像檔推送至註冊資料庫
-   您必須先為映像檔加上註冊資料庫名稱的標記，接著再推送映像檔。  	
-	 a. 為本機映像檔加上註冊資料庫名稱的標記
-	    $ sudo docker tag [SOURCE_IMAGE] [HOSTNAME]/[PROJECT-ID]/[IMAGE]
+	2. 將映像檔推送至註冊資料庫
+   	- 您必須先為映像檔加上註冊資料庫名稱的標記，接著再推送映像檔。  	
+	 	a. 為本機映像檔加上註冊資料庫名稱的標記
+		```
+	    	sudo docker tag [SOURCE_IMAGE] [HOSTNAME]/[PROJECT-ID]/[IMAGE]
 			 
-			sudo docker tag minihant/p1:1.0.0 asia.gcr.io/winpos20190211/mynode
+		sudo docker tag minihant/p1:1.0.0 asia.gcr.io/winpos20190211/mynode
+		```
 
-	 b. $ sudo docker push [HOSTNAME]/[PROJECT-ID]/[IMAGE] 
+	 	b. push to 
+		```
+		sudo docker push [HOSTNAME]/[PROJECT-ID]/[IMAGE] 
 	   
-		 sudo docker push asia.gcr.io/winpos20190211/mynode
+		sudo docker push asia.gcr.io/winpos20190211/mynode
+		```
 
 
