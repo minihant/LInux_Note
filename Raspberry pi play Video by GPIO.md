@@ -3,8 +3,8 @@
 ## Play Video With Python and GPIO
 [Ref:](https://www.hackster.io/ThothLoki/play-video-with-python-and-gpio-a30c7a)
    
-   1 Create a file "videoplayer.py"
-   2 edit the file as:
+   1. Create a file "videoplayer.py"
+   2. edit the file as:
       ```
       import Rpi.GPIO as GPIO
       import sys
