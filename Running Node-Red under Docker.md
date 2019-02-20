@@ -1,8 +1,8 @@
 # Running node-red under Docker
-    ## Container versions
-        1. latest - uses official Node.JS v4 base image.
-        2. slim - uses Alpine Linux base image.
-        3. rpi - uses RPi-compatible base image.
+## Container versions
+    1. latest - uses official Node.JS v4 base image.
+    2. slim - uses Alpine Linux base image.
+    3. rpi - uses RPi-compatible base image.
         - Using Alpine Linux reduces the built image size (~100MB vs ~700MB) but removes standard dependencies
             that are required for native module compilation. If you want to add modules with native dependencies, use the standard image or extend the slim image with the missing packages.
         - Additional images using a newer Node.js v8 base image are now available with the following tags.
@@ -10,45 +10,46 @@
             2. slim-v8
             3. rpi-v8
 
-    ## Quick start
-        ```
-        docker run -it -p 1880:1880 --name mynodered nodered/node-red-docker
-        ```
-        - Note: on a Raspberry Pi you must use a rpi-tagged image: nodered/node-red-docker:rpi.
-        - This command will download the nodered/node-red-docker container from DockerHub and run an instance      of it with the name of mynodered and with port 1880 exposed. In the terminal window you will see         Node-RED start. Once started you can then browse to http://{host-ip}:1880 to access the editor.
-            Hit Ctrl-p Ctrl-q to detach from the container. This leaves it running in the background.
+## Quick start
+    ```
+    docker run -it -p 1880:1880 --name mynodered nodered/node-red-docker
+    ```
+    - Note: on a Raspberry Pi you must use a rpi-tagged image: nodered/node-red-docker:rpi.
+    - This command will download the nodered/node-red-docker container from DockerHub and run an instance      of it with the name of mynodered and with port 1880 exposed. In the terminal window you will see         Node-RED start. Once started you can then browse to http://{host-ip}:1880 to access the editor.
+    Hit Ctrl-p Ctrl-q to detach from the container. This leaves it running in the background.
 
-    ## To reattach to the container
+## To reattach to the container
     ```
     docker attach mynodered
     ```
 
-    ## To stop the container:
+## To stop the container:
     ```
     docker stop mynodered
     ```
 
-    ## To start the container:
+## To start the container:
     ```
     docker start mynodered
     ```
 
-    ## Note : your flows will be stored in the file called flows.json within the container. This can be customised by setting the FLOWS environment parameter: 
+## Note : your flows will be stored in the file called flows.json within the container. This can be customised by setting the FLOWS environment parameter: 
     ```
     docker run -it -p 1880:1880 -e FLOWS=my_flows.json nodered/node-red-docker
     ```
 
-    ## Node.js runtime arguments can be passed to the container using an environment parameter (NODE_OPTIONS). For example, to fix the heap size used by the Node.js garbage collector you would use the following command:
+## Node.js runtime arguments can be passed to the container using an environment parameter (NODE_OPTIONS). For example, to fix the heap size used by the Node.js garbage collector you would use the following command:
     ```
     docker run -it -p 1880:1880 -e NODE_OPTIONS="--max_old_space_size=128" nodered/node-red-docker
     ```
-# Customising
+
+## Customising
     - The container uses the directory /data as the user configuration directory. To add additional nodes you can open shell into the container and run the appropriate npm install commands:
     ```
-    # Open a shell in the container
+## Open a shell in the container
     docker exec -it mynodered /bin/bash
 
-    # Once inside the container, npm install the nodes in /data
+## Once inside the container, npm install the nodes in /data
     cd /data
     npm install node-red-node-smooth
     exit
@@ -57,7 +58,7 @@
     docker stop mynodered
     docker start mynodered
     ```
-# Storing data outside of the container
+## Storing data outside of the container
     ```
     docker run -it -p 1880:1880 -v ~/node-red-data:/data --name mynodered nodered/node-red-docker
     ```
@@ -73,8 +74,8 @@
     ```
     - Note : Modules with a native dependencies will be compiled on the host machine's architecture. These modules will not work inside the Node-RED container unless the architecture matches the container's base image. For native modules, it is recommended to install using a local shell or update the package.json and re-build.
 
-# Building the container from source
-    1. To build your own version:
+## Building the container from source
+1. To build your own version:
     ```
     git clone https://github.com/node-red/node-red-docker.git
     cd node-red-docker
@@ -82,7 +83,7 @@
     # Build it with the desired tag
     docker build -f <version>/Dockerfile -t mynodered:<tag> .
     ```
-# Building a custom image
+## Building a custom image
     - Creating a new Docker image, using the public Node-RED images as the base image, allows you to install extra nodes during the build process
 
     1. Create a file called Dockerfile with the content:
@@ -92,7 +93,7 @@
     5. docker build -t mynodered:<tag> .
     - That will create a Node-RED image that includes the wordpos nodes.
 
-# Updating container
+## Updating container
     ```
     docker pull nodered/node-red-docker
     docker stop mynodered
