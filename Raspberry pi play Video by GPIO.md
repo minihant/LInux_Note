@@ -214,4 +214,17 @@
    sudo npm install -g node-gyp
    sudo npm install -g node-pre-gyp  
    sudo npm install serialport --unsafe-perm    
-   ```   
+   ```
+
+## install fttp server
+   ```
+   sudo apt-get install vsftpd
+   sudo nano /etc/vsftpd.conf
+      remove "#" at line local enable =yes
+      remove "#" at line write enable =yes
+      local_enable=YES, write_enable=YES
+   ```
+   ### start ftp server
+      ```
+      sudo service vsftpd restart
+      ```
