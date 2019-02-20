@@ -1,24 +1,24 @@
 # Install and Use Docker on Ubuntu 16.04
 ## Step 1 — Installing Docker
-1. in order to ensure the downloads are valid, add the GPG key for the official Docker repository to your system:
+  1. in order to ensure the downloads are valid, add the GPG key for the official Docker repository to your system:
 ```CCS
 $ sudo apt-get install curl -y
 $ curl -sSL https://get.docker.com/ | sh
 $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```
 	  
-2. Add the Docker repository to APT sources:
+  2. Add the Docker repository to APT sources:
 ```
 $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
    or 
 $ sudo apt-get install software-properties-common
 $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 ```			
-3. Next, update the package database with the Docker packages from the newly added repo:
+  3. Next, update the package database with the Docker packages from the newly added repo:
 ```
 $ sudo apt-get update 
 ```	
-4. Make sure you are about to install from the Docker repo instead of the default Ubuntu 16.04 repo:
+  4. Make sure you are about to install from the Docker repo instead of the default Ubuntu 16.04 repo:
 ```
 $ apt-cache policy docker-ce
 ```  
@@ -29,7 +29,7 @@ $ sudo apt-get install docker.io
 or 
 $ sudo apt install docker-ce
 ```  
-6. Docker should now be installed, the daemon started, and the process enabled to start on boot. Check that it's running:
+  6. Docker should now be installed, the daemon started, and the process enabled to start on boot. Check that it's running:
 ```
 $ sudo systemctl status docker
    or
@@ -58,44 +58,51 @@ $ sudo usermod -aG docker username
 
 ## ==========================================
 ## Step 3 — Using the Docker Command
-
-- The syntax takes this form:
+  - The syntax takes this form:
 ```
 $ docker [option] [command] [arguments]
 ```
-- To view all available subcommands, type:
+  - To view all available subcommands, type:
 ```
 $ docker
 ```
 	  
--To view system-wide information about Docker, use:
+  -To view system-wide information about Docker, use:
 ```
 $ docker info
 ```
 
 ## ===========================================
 ## Step 4 — Working with Docker Images
-
-	* To check whether you can access and download images from Docker Hub, type:
-	  $ docker run hello-world
+  - To check whether you can access and download images from Docker Hub, type:
+  ```
+  $ docker run hello-world
+  ```
 	  
-	* You can search for images available on Docker Hub, For example, to search for the Ubuntu image, type:
-	  $ docker search ubuntu
+ - You can search for images available on Docker Hub, For example, to search for the Ubuntu image, type:
+ ```
+$ docker search ubuntu
+```	  
+  -  you can download it to your computer using the pull subcommand. Try this with the ubuntu image, like so:
+  ```
+  $ docker pull ubuntu   
+  ```
 	  
-	*  you can download it to your computer using the pull subcommand. Try this with the ubuntu image, like so:
-	  $ docker pull ubuntu     	
-	  
-	* After an image has been downloaded, you may then run a container using the downloaded image with the run subcommand.
-	  $ docker run ubuntu  
+  - After an image has been downloaded, you may then run a container using the downloaded image with the run subcommand.
+	```
+	  $ docker run ubuntu
+	```
 	
-	* To see the images that have been downloaded to your computer, type:
+	- To see the images that have been downloaded to your computer, type:
 	  $ docker images
-	  			 Output:
-					EPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-					ubuntu              latest              ea4c82dcd15a        16 hours ago        85.8MB
-					hello-world         latest              4ab4c602aa5e        5 weeks ago         1.84kB
-   * Remove docker image
-		$ docker rmi image-name			
+	  	Output:
+		EPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+		ubuntu              latest              ea4c82dcd15a        16 hours ago        85.8MB
+		hello-world         latest              4ab4c602aa5e        5 weeks ago         1.84kB
+  - Remove docker image
+  	```
+		$ docker rmi image-name	
+	```
 
 ## =============================================		
 ## Step 5 — Running a Docker Container
