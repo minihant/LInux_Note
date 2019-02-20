@@ -1,174 +1,162 @@
 # Install and Use Docker on Ubuntu 16.04
 ## Step 1 — Installing Docker
-  1. in order to ensure the downloads are valid, add the GPG key for the official Docker repository to your system:
-```CCS
-$ sudo apt-get install curl -y
-$ curl -sSL https://get.docker.com/ | sh
-$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-```
-	  
-  2. Add the Docker repository to APT sources:
-```
-$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-   or 
-$ sudo apt-get install software-properties-common
-$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-```			
-  3. Next, update the package database with the Docker packages from the newly added repo:
-```
-$ sudo apt-get update 
-```	
-  4. Make sure you are about to install from the Docker repo instead of the default Ubuntu 16.04 repo:
-```
-$ apt-cache policy docker-ce
-```  
-5. Finally, install Docker:
-```
-$ sudo apt-get install -y docker-ce
-$ sudo apt-get install docker.io
-or 
-$ sudo apt install docker-ce
-```  
-  6. Docker should now be installed, the daemon started, and the process enabled to start on boot. Check that it's running:
-```
-$ sudo systemctl status docker
-   or
-$ sudo service docker status
-```
- 
-## ============================================ 
-## Step 2 — Executing the Docker Command Without Sudo (Optional)
-  - If you want to avoid typing sudo whenever you run the docker command, add your username to the docker group:
-```
-$ sudo usermod -aG docker ${USER}
-```	  
-  - To apply the new group membership, you can log out of the server and back in, or you can type the following:
-```
-$ su - ${USER}
-```
-	  
-  - you can confirm that your user is now added to the docker group by typing:
-```
-$ id -nG
-```
-  - If you need to add a user to the docker group that you're not logged in as, declare that username explicitly using:
-```
-$ sudo usermod -aG docker username
-```
+	1. in order to ensure the downloads are valid, add the GPG key for the official Docker repository to your system:
+	```
+	$ sudo apt-get install curl -y
+	$ curl -sSL https://get.docker.com/ | sh 
+	$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - 
 
+	$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+	or 
+ 	$ sudo apt-get install software-properties-common
+	$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+	```			
+	3. Next, update the package database with the Docker packages from the newly added repo:
+	```
+	$ sudo apt-get update 
+	```	
+	4. Make sure you are about to install from the Docker repo instead of the default Ubuntu 16.04 repo:
+	```
+	$ apt-cache policy docker-ce
+	```  
+	5. Finally, install Docker:
+	```
+  	$ sudo apt-get install -y docker-ce
+  	$ sudo apt-get install docker.io
+  	or 
+  	$ sudo apt install docker-ce
+  	```  
+	6. Docker should now be installed, the daemon started, and the process enabled to start on boot. Check that it's running:
+	```
+	$ sudo systemctl status docker
+	or
+	$ sudo service docker status
+	```
+   
+## Step 2 — Executing the Docker Command Without Sudo (Optional)
+	- If you want to avoid typing sudo whenever you run the docker command, add your username to the docker group:
+	```
+	$ sudo usermod -aG docker ${USER}
+	```	  
+	- To apply the new group membership, you can log out of the server and back in, or you can type the following:
+	```
+	$ su - ${USER}
+	``` 
+	- you can confirm that your user is now added to the docker group by typing:
+	```
+	$ id -nG
+	```
+	- If you need to add a user to the docker group that you're not logged in as, declare that username explicitly using:
+	```
+	$ sudo usermod -aG docker username
+	```
 ## ==========================================
 ## Step 3 — Using the Docker Command
-  - The syntax takes this form:
-```
-$ docker [option] [command] [arguments]
-```
-  - To view all available subcommands, type:
-```
-$ docker
-```
-	  
-  -To view system-wide information about Docker, use:
-```
-$ docker info
-```
-
-## ===========================================
-## Step 4 — Working with Docker Images
-  - To check whether you can access and download images from Docker Hub, type:
-  ```
-  $ docker run hello-world
-  ```
-	  
- - You can search for images available on Docker Hub, For example, to search for the Ubuntu image, type:
- ```
-$ docker search ubuntu
-```	  
-  -  you can download it to your computer using the pull subcommand. Try this with the ubuntu image, like so:
-  ```
-  $ docker pull ubuntu   
-  ```
-	  
-  - After an image has been downloaded, you may then run a container using the downloaded image with the run subcommand.
+	- The syntax takes this form:
 	```
-	  $ docker run ubuntu
+	$ docker [option] [command] [arguments]
+	```
+	- To view all available subcommands, type:
+	```
+	$ docker
+	```  
+	-To view system-wide information about Docker, use:
+	```
+	$ docker info
+	```
+	
+## Step 4 — Working with Docker Images
+	- To check whether you can access and download images from Docker Hub, type:
+	```
+	$ docker run hello-world
+	```
+ 	- You can search for images available on Docker Hub, For example, to search for the Ubuntu image, type:
+ 	```
+	$ docker search ubuntu
+	```	  
+	-  you can download it to your computer using the pull subcommand. Try this with the ubuntu image, like so:
+	```
+	$ docker pull ubuntu   
+	```
+	  
+	- After an image has been downloaded, you may then run a container using the downloaded image with the run subcommand.
+	```
+	$ docker run ubuntu
 	```
 	
 	- To see the images that have been downloaded to your computer, type:
-	  $ docker images
+	$ docker images
 	  	Output:
 		EPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 		ubuntu              latest              ea4c82dcd15a        16 hours ago        85.8MB
 		hello-world         latest              4ab4c602aa5e        5 weeks ago         1.84kB
-  - Remove docker image
+	- Remove docker image
   	```
 		$ docker rmi image-name	
 	```
 
-## =============================================		
+		
 ## Step 5 — Running a Docker Container
-- As an example, let's run a container using the latest image of Ubuntu. The combination of the -i and -t 
-  switches gives you interactive shell access into the container:
-```
-$ docker run -it ubuntu
-```	
+	- As an example, let's run a container using the latest image of Ubuntu. The combination of the -i and -t 
+  		switches gives you interactive shell access into the container:
+	```
+	$ docker run -it ubuntu
+	```	
 				
-- Now you can run any command inside the container.
-```
-apt-get update
-```
+	- Now you can run any command inside the container.
+	```
+	apt-get update
+	```
      
-- Then install any application in it. Let's install Node.js:
-```
-apt-get install -y nodejs
-```
-- To exit the container, type exit at the prompt.   
+	- Then install any application in it. Let's install Node.js:
+	```
+	apt-get install -y nodejs
+	```
+	- To exit the container, type exit at the prompt.   
 
  
-## ========================================
+
 ## Step 6 — Managing Docker Containers
-- To view the active ones, use:
-```
-$ sudo docker ps
-```	  
-- To view all containers — active and inactive — run docker ps with the -a switch:
-```
-$ sudo docker ps -a
-```	  
-- To view the latest container you created, pass it the -l switch:
-```
-$ docker ps -l
-```
+	- To view the active ones, use:
+	```
+	$ sudo docker ps
+	```	  
+	- To view all containers — active and inactive — run docker ps with the -a switch:
+	```
+	$ sudo docker ps -a
+	```	  
+	- To view the latest container you created, pass it the -l switch:
+	```
+	$ docker ps -l
+	```
 	  
-- To start a stopped container, use docker start, followed by the container ID or the container's name. 
-```
-$sudo  docker start 9b0db8a30ad1 
-```	  
-- To stop a running container, use docker stop, followed by the container ID or name.
-```
-$ sudo docker stop hello-world
-```	  
-- Once you've decided you no longer need a container anymore, remove it with the docker rm command
-```
-$ docker rm youthful_roentgen
-```
-	  
-- You can start a new container and give it a name using the --name switch.
-- You can also use the --rm switch to create a container that removes itself when it's stopped
+	- To start a stopped container, use docker start, followed by the container ID or the container's name. 
+	```
+	$sudo  docker start 9b0db8a30ad1 
+	```	  
+	- To stop a running container, use docker stop, followed by the container ID or name.
+	```
+	$ sudo docker stop hello-world
+	```	  
+	- Once you've decided you no longer need a container anymore, remove it with the docker rm command
+	```
+	$ docker rm youthful_roentgen
+	```
+	- You can start a new container and give it a name using the --name switch.
+	- You can also use the --rm switch to create a container that removes itself when it's stopped
 
-## ================================================	
+
 ## Step 7 — Committing Changes in a Container to a Docker Image
-
-- commit the changes to a new Docker image instance using the following command structure:
-```
-$ sudo docker commit -m "What did you do to the image" -a "Author Name" container-id repository/new_image_name
-  For example:
-$ sudo docker commit -m "added node.js" -a "sammy" d9b100f2f636 sammy/ubuntu-nodejs
-```	
-        
-## ===================================================       
+	- commit the changes to a new Docker image instance using the following command structure:
+	```
+	$ sudo docker commit -m "What did you do to the image" -a "Author Name" container-id repository/new_image_name
+	For example:
+	$ sudo docker commit -m "added node.js" -a "sammy" d9b100f2f636 sammy/ubuntu-nodejs
+	```	
+               
 ## Step 8 — Pushing Docker Images to a Docker Repository
-  - Reference: How To Set Up a Private Docker Registry on Ubuntu 14.04:
-   [how-to-set-up-a-private-docker-registry]( https://www.digitalocean.com/community/tutorials/how-to-set-up-a-private-docker-registry-on-ubuntu-14-04)
+	- Reference: How To Set Up a Private Docker Registry on Ubuntu 14.04: 
+[how-to-set-up-a-private-docker-registry](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-private-docker-registry-on-ubuntu-14-04).
 
 	- To push your image, first log into Docker Hub:
 	```
@@ -190,8 +178,7 @@ $ sudo docker commit -m "added node.js" -a "sammy" d9b100f2f636 sammy/ubuntu-nod
 	```
 	$ docker push sammy/ubuntu-nodejs
 	```
-
-## =========================================		
+		
 ## Step 9 -- Execute docker image linux command
 	```
 	$ docker exec cocker-image-name apt-get update
@@ -201,13 +188,13 @@ $ sudo docker commit -m "added node.js" -a "sammy" d9b100f2f636 sammy/ubuntu-nod
 	sudo docker run -it -p 1880:1880 -p 1883:1883 --name mycontainer yourimage
    	sudo docker tag {DOCKER_IMAGE_ID} {YOUR_ACCOUNT_NAME}/{REPOSITORY_NAME}:1.0.0
 	```
-## ============================= 
+ 
 ## Node-Red operation
 	- Quick start a new node red
 	```
 	$ sudo docker run -it -p 1880:1880 --name mynodered nodered/node-red-docker 
 	```
-## ===================== 
+
 ## Work with docker Hub
 	1. login to the Docker Hub
 	```
@@ -234,7 +221,7 @@ $ sudo docker commit -m "added node.js" -a "sammy" d9b100f2f636 sammy/ubuntu-nod
 	$ sudo docker pull minihant/hant:1.0.0
 	```
 
-## ==================================
+
 ## Docker image 指令
 	- 儲存 image 成 tar 檔案 -------
 	-- docker save [OPTIONS] IMAGE [IMAGE...]
@@ -248,7 +235,6 @@ $ sudo docker commit -m "added node.js" -a "sammy" d9b100f2f636 sammy/ubuntu-nod
 	```
 
 
-##================================ 
 ##  Docker Volume 指令
 	1. 查看目前的 volume
 	```
@@ -279,7 +265,7 @@ $ sudo docker commit -m "added node.js" -a "sammy" d9b100f2f636 sammy/ubuntu-nod
 	```
 	$ sudo dockker run -it -v /etc/nginx/sites-available:/etc/nginx/sites-available --name ng nginx /bin/bash
 	```
-## ========================== 
+
 ##  Docker network 指令
 	1. 查看目前 docker 的網路清單
 	```
@@ -313,12 +299,14 @@ $ sudo docker commit -m "added node.js" -a "sammy" d9b100f2f636 sammy/ubuntu-nod
 	更多詳細資料可[參考](https://docs.docker.com/engine/userguide/networking/#user-defined-networks)
 
 
-## ==================================
+
 ## Docker-Compose 定義和執行多 Container 管理的工具
 	- 透過 docker-compose.yml ( YML 格式 ) 文件。
-	docker-compose.yml 的寫法可參考 https://docs.docker.com/compose/compose-file/
-	也可以直接參考官網範例 https://docs.docker.com/compose/compose-file/#compose-file-structure-and-examples
-	Compose 的 Command-line 可參考 https://docs.docker.com/glossary/?term=compose
+	docker-compose.yml 的寫法可
+[參考] https://docs.docker.com/compose/compose-file/
+	也可以直接參考[官網範例]( https://docs.docker.com/compose/compose-file/#compose-file-structure-and-examples)
+	Compose 的 Command-line 可[參考]( https://docs.docker.com/glossary/?term=compose)
+	
 	1. 查看目前 Container
 	```
 	$ sudo docker-compose ps
@@ -347,7 +335,9 @@ $ sudo docker commit -m "added node.js" -a "sammy" d9b100f2f636 sammy/ubuntu-nod
 	```
 	$ sudo docker-compose down [options]
 	```
-	-- down 這個功能也建議可以參考 https://docs.docker.com/compose/reference/down/
+	-- down 這個功能也建議可以
+[參考] (https://docs.docker.com/compose/reference/down/)
+
 	舉個例子
 		$ sudo docker-compose down -v
 		加個 -v 就會順便幫你把 volume 移除（ 移除你在 docker-compose.yml 裡面設定的 volume ）
@@ -384,7 +374,7 @@ $ sudo docker commit -m "added node.js" -a "sammy" d9b100f2f636 sammy/ubuntu-nod
 	$ sudo docker-compose push
 	```
 
-## ================================
+
 ## install googlg cloud SDK in ubuntu
 	-Create environment variable for correct distribution
 	```
@@ -405,7 +395,6 @@ $ sudo docker commit -m "added node.js" -a "sammy" d9b100f2f636 sammy/ubuntu-nod
 	sudo apt-get update && sudo apt-get install google-cloud-sdk
 	```
 
-## ============================
 ## Use google docker reporisity
 	1. $ sudo gcloud auth configure-docker
 
@@ -413,7 +402,7 @@ $ sudo docker commit -m "added node.js" -a "sammy" d9b100f2f636 sammy/ubuntu-nod
    	- 您必須先為映像檔加上註冊資料庫名稱的標記，接著再推送映像檔。  	
 	 	a. 為本機映像檔加上註冊資料庫名稱的標記
 		```
-	    	sudo docker tag [SOURCE_IMAGE] [HOSTNAME]/[PROJECT-ID]/[IMAGE]
+	    sudo docker tag [SOURCE_IMAGE] [HOSTNAME]/[PROJECT-ID]/[IMAGE]
 			 
 		sudo docker tag minihant/p1:1.0.0 asia.gcr.io/winpos20190211/mynode
 		```
