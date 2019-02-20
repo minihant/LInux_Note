@@ -3,8 +3,8 @@
 ## Play Video With Python and GPIO
 [Ref:](https://www.hackster.io/ThothLoki/play-video-with-python-and-gpio-a30c7a)
    
-   1.1 Create a file "videoplayer.py"
-   1.2 edit the file as:
+   1 Create a file "videoplayer.py"
+   2 edit the file as:
       ```
       import Rpi.GPIO as GPIO
       import sys
@@ -60,17 +60,19 @@
       last_state1 = input_state1
       last_state2 = input_state2 
       ```
-   1.3 Execute by input : python3 videoplayer.py
+   3. Execute by input : python3 videoplayer.py
 
    
 ## omxplayer-player.py    	
-[ref:](https://github.com/jehutting/omxplayer-player/blob/master/omxplayer-player.py)
-[ref:](http://www.pibeginners.com/playing-media-via-cli-gpio/)
+[jehutting/omxplayer-player](https://github.com/jehutting/omxplayer-player/blob/master/omxplayer-player.py)
+
+[Push button play video or MP3](http://www.pibeginners.com/playing-media-via-cli-gpio/)
    
 
 ## Nodejs play video
-[ref:](https://www.npmjs.com/package/node-omxplayer)
-[ref:](https://npm.taobao.org/package/omx-manager#othermethods)
+[Node-Omxplayer](https://www.npmjs.com/package/node-omxplayer)
+
+[Module omx-manager](https://npm.taobao.org/package/omx-manager#othermethods)
    
    1. npm install node-omxplayer
    2. sudo apt-get install omxplayer
