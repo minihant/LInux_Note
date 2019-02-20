@@ -375,7 +375,7 @@
 	```
 
 
-## install googlg cloud SDK in ubuntu
+## install google cloud SDK in ubuntu
 	-Create environment variable for correct distribution
 	```
 	export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
