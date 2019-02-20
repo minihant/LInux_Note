@@ -1,36 +1,40 @@
-#=================================================
-# Step 1 — Installing Docker
-	## First, in order to ensure the downloads are valid, add the GPG key for the official Docker repository to your system:
-	  '''
-		$ sudo apt-get install curl -y
-	  $ curl -sSL https://get.docker.com/ | sh
-	  $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-		'''
+# Install and Use Docker on Ubuntu 16.04
+## Step 1 — Installing Docker
+1. in order to ensure the downloads are valid, add the GPG key for the official Docker repository to your system:
+```CCS
+$ sudo apt-get install curl -y
+$ curl -sSL https://get.docker.com/ | sh
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+```
 	  
-	* Add the Docker repository to APT sources:
-	  $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-	  
-		or 
-      $ sudo apt-get install software-properties-common
-		$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-			
-	* Next, update the package database with the Docker packages from the newly added repo:
-	  $ sudo apt-get update 
-	
-	* Make sure you are about to install from the Docker repo instead of the default Ubuntu 16.04 repo:
-	  $ apt-cache policy docker-ce
-	  
-	* Finally, install Docker:
-	  $ sudo apt-get install -y docker-ce
-	  $ sudo apt-get install docker.io
-	  or 
-	  $ sudo apt install docker-ce
-	  
-	* Docker should now be installed, the daemon started, and the process enabled to start on boot. Check that it's running:
-	  $ sudo systemctl status docker
-	  or
-	  $ sudo service docker status
-
+2. Add the Docker repository to APT sources:
+```
+$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+   or 
+$ sudo apt-get install software-properties-common
+$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+```			
+3. Next, update the package database with the Docker packages from the newly added repo:
+```
+$ sudo apt-get update 
+```	
+4. Make sure you are about to install from the Docker repo instead of the default Ubuntu 16.04 repo:
+```
+$ apt-cache policy docker-ce
+```  
+5. Finally, install Docker:
+```
+$ sudo apt-get install -y docker-ce
+$ sudo apt-get install docker.io
+or 
+$ sudo apt install docker-ce
+```  
+6. Docker should now be installed, the daemon started, and the process enabled to start on boot. Check that it's running:
+```
+$ sudo systemctl status docker
+   or
+$ sudo service docker status
+```
 #==============================================================	  
 # Step 2 — Executing the Docker Command Without Sudo (Optional)
 
