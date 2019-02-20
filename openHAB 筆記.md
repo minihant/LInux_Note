@@ -42,5 +42,6 @@ sudo systemctl enable openhab2.service
 sudo apt-get purge openhab2*
 sudo rm /etc/apt/sources.list.d/openhab2.list
 ```
+
 ## reference:
-[openHAB 2 on Linux](openHAB 2 on Linux)
+[openHAB 2 on Linux](http://docs.openhab.org/installation/linux.html)
