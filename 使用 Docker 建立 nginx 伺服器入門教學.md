@@ -33,7 +33,8 @@
 
 
 4. 使用 Dockerfile 建立新的映像檔：
-    '''
+    ```
     FROM nginx
     COPY ./index.html /usr/share/nginx/html
     ```
+
