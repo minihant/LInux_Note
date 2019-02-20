@@ -36,7 +36,7 @@ $ sudo systemctl status docker
 $ sudo service docker status
 ```
  
- 
+## ============================================ 
 ## Step 2 — Executing the Docker Command Without Sudo (Optional)
 ### If you want to avoid typing sudo whenever you run the docker command, add your username to the docker group:
 ```
@@ -58,18 +58,23 @@ $ sudo usermod -aG docker username
 
 ## Step 3 — Using the Docker Command
 
-	* The syntax takes this form:
-	  $ docker [option] [command] [arguments]
+- The syntax takes this form:
+```
+$ docker [option] [command] [arguments]
+```
+- To view all available subcommands, type:
+```
+$ docker
+```
 	  
-	* To view all available subcommands, type:
-	  $ docker
-	  
-	* To view system-wide information about Docker, use:
-	  $ docker info
+-To view system-wide information about Docker, use:
+```
+$ docker info
+```
 
-//=============================================================	  
-Step 4 — Working with Docker Images
-//=============================================================
+## ===========================================
+## Step 4 — Working with Docker Images
+
 	* To check whether you can access and download images from Docker Hub, type:
 	  $ docker run hello-world
 	  
@@ -91,61 +96,73 @@ Step 4 — Working with Docker Images
    * Remove docker image
 		$ docker rmi image-name			
 
-//=================================================================		
-Step 5 — Running a Docker Container
-//===================================================================
-	* As an example, let's run a container using the latest image of Ubuntu. The combination of the -i and -t 
-	  switches gives you interactive shell access into the container:
-	   $ docker run -it ubuntu
-	      Output:
-				root@9b0db8a30ad1:/#
+## =============================================		
+## Step 5 — Running a Docker Container
+- As an example, let's run a container using the latest image of Ubuntu. The combination of the -i and -t 
+  switches gives you interactive shell access into the container:
+```
+$ docker run -it ubuntu
+```	
 				
-   * Now you can run any command inside the container.
-     # apt-get update
+- Now you can run any command inside the container.
+```
+apt-get update
+```
      
-   * Then install any application in it. Let's install Node.js:
-     # apt-get install -y nodejs
-   
-   * To exit the container, type exit at the prompt.   
+- Then install any application in it. Let's install Node.js:
+```
+apt-get install -y nodejs
+```
+- To exit the container, type exit at the prompt.   
 
-//=====================================================   
-Step 6 — Managing Docker Containers
-//=====================================================
-	* To view the active ones, use:
-	  $ docker ps
+ 
+## ========================================
+## Step 6 — Managing Docker Containers
+- To view the active ones, use:
+```
+$ sudo docker ps
+```	  
+- To view all containers — active and inactive — run docker ps with the -a switch:
+```
+$ sudo docker ps -a
+```	  
+- To view the latest container you created, pass it the -l switch:
+```
+$ docker ps -l
+```
 	  
-	* To view all containers — active and inactive — run docker ps with the -a switch:
-	  $ docker ps -a
+- To start a stopped container, use docker start, followed by the container ID or the container's name. 
+```
+$sudo  docker start 9b0db8a30ad1 
+```	  
+- To stop a running container, use docker stop, followed by the container ID or name.
+```
+$ sudo docker stop hello-world
+```	  
+- Once you've decided you no longer need a container anymore, remove it with the docker rm command
+```
+$ docker rm youthful_roentgen
+```
 	  
-	* To view the latest container you created, pass it the -l switch:
-	  $ docker ps -l
-	  
-	* To start a stopped container, use docker start, followed by the container ID or the container's name. 
-	  $ docker start 9b0db8a30ad1 
-	  
-	* To stop a running container, use docker stop, followed by the container ID or name.
-	  $ docker stop hello-world
-	  
-	* Once you've decided you no longer need a container anymore, remove it with the docker rm command
-	  $ docker rm youthful_roentgen
-	  
-	* You can start a new container and give it a name using the --name switch.
-	* You can also use the --rm switch to create a container that removes itself when it's stopped
+- You can start a new container and give it a name using the --name switch.
+- You can also use the --rm switch to create a container that removes itself when it's stopped
 
-//=============================================================	
-Step 7 — Committing Changes in a Container to a Docker Image
-//=============================================================
-   * commit the changes to a new Docker image instance using the following command structure:
-     $ docker commit -m "What did you do to the image" -a "Author Name" container-id repository/new_image_name
-        For example:
-        $ sudo docker commit -m "added node.js" -a "sammy" d9b100f2f636 sammy/ubuntu-nodejs
+## =========================================================	
+## Step 7 — Committing Changes in a Container to a Docker Image
+
+- commit the changes to a new Docker image instance using the following command structure:
+```
+$ sudo docker commit -m "What did you do to the image" -a "Author Name" container-id repository/new_image_name
+  For example:
+$ sudo docker commit -m "added node.js" -a "sammy" d9b100f2f636 sammy/ubuntu-nodejs
+```	
         
-//=====================================================================        
-Step 8 — Pushing Docker Images to a Docker Repository
-   * Reference: How To Set Up a Private Docker Registry on Ubuntu 14.04:
-      https://www.digitalocean.com/community/tutorials/how-to-set-up-a-private-docker-registry-on-ubuntu-14-04
-//========================================================================
-	* To push your image, first log into Docker Hub:
+## ===================================================       
+## Step 8 — Pushing Docker Images to a Docker Repository
+  - Reference: How To Set Up a Private Docker Registry on Ubuntu 14.04:
+   [how-to-set-up-a-private-docker-registry]( https://www.digitalocean.com/community/tutorials/how-to-set-up-a-private-docker-registry-on-ubuntu-14-04)
+
+	- To push your image, first log into Docker Hub:
 		$ Docker login -u docker-registry-username
 		
 	* If your Docker registry username is different from the local username you used to create the image, 
