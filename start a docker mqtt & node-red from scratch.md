@@ -15,7 +15,7 @@
     $ sudo docker run -it -p 1883:1883 -p 9001:9001 --name mqtt eclipse-mosquitto
     ```
 
-##3. Install docker node-red
+## 3. Install docker node-red
     ```
     $ sudo docker login   --> your docjer HUB account
     $ sudo docker pull minihant/hant:1.0.1
