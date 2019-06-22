@@ -3,3 +3,26 @@ $ sudo gcloud auth login
 $ sudo docker tag minihant/mqtt:1.0.2 gcr.io/winpos20190211/mymqtt$  
 $ sudo gcloud docker -- push gcr.io/winpos20190211/mqtt:1.0.2
 $ sudo gcloud docker -- pull gcr.io/winpos20190211/mqtt:1.0.2
+
+
+Configuring SSL
+1.Create a private key
+  $ sudo openssl genrsa -out node-key.pem 2048
+  
+2. Create a certificate Request
+  $ sudo openssl req -new -sha256 -key node-key.pem -out node-csr.pem
+  
+3. Sign the Certificate with the Private key to create a self signed Certificate
+  $ sudo openssl x509 -req -in node-csr.pem -signkey node-key.pem -out node-cert.pem
+
+4. un-comment the line in setting.js
+    var fs=require("fs")
+    .....
+    https{
+     key:  fs.readFileSync('node-key.pem'),
+     cert: fs.readFileSync('node-cert.pem')
+    }
+    
+    requireHttps: true,
+    
+ 5. put the .pem files into th directory of "/usr/src/node-red"   
