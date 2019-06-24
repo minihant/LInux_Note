@@ -1,0 +1,5 @@
+$ sudo apt-get update
+$ sudo apt-get upgrade
+$ sudo apt install gdebi-core
+$ sudo wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
+$ sudo sudo gdebi teamviewer_amd64.deb
