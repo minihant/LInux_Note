@@ -10,7 +10,7 @@
   $ sudo apt-get install vnc4server
 
 3.1. 安裝完成後先執行vncserver，會先跳出password設定的選項：
-  $ vncserve  
+  $ vncserver  
   
 4. 設定vnc config
   修改~/.vnc/xstartup 的設定，加入下面4行:
@@ -32,7 +32,8 @@
     @reboot /usr/bin/vncserver :1
     
   編輯完後儲存並重啓伺服器測試
- //--------------------------------------- 
+  
+ //-- install RDP------------------------------------- 
  or install Remote desktop : 
   $ sudo apt-get install -y xrdp
   $ sudo apt-get install -y xfce4
