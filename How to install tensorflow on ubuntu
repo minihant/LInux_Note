@@ -45,6 +45,8 @@ install tensorflow
 6. And to exit virtualenv later: 
   $ deactivate  # don't exit until you're done using TensorFlow
   
+  $ source ./venv/bin/activate tensorflow 
+  
 //===========================================
 Training module
 //===============================================
@@ -88,3 +90,15 @@ Training module
       you can refer to the documents k210 use in windows or k210 use in linux
       And you can find some useful article in my bolg.
   c. down load program now you can use kflash.py down load the program
+  
+  //---------------------------
+  // run tensorflow on jupyter
+  //----------------------------
+ 1. install jupytor notebook
+  $ pip install jupyter
+  $ source deactivate tensorflow
+ 
+  $ source activate tensorflow
+  $ juypter notebook
+  $ open brwoser :  http://localhost:8888
+  $
