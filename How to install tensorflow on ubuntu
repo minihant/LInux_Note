@@ -63,7 +63,7 @@ Training module
   
 2. training
   $ make train_pureconv ILR=0.001 MAXEP=20 IAA=false
-    LR : the init learning rate
+    ILR : the init learning rate
     MAXEP : max epoch
     IAA : whether to use data augmenter
     NOTE: you can use CKPT:xxxxx to continue train
