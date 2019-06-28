@@ -107,3 +107,7 @@ Training module
   $ juypter notebook
   $ open brwoser :  http://localhost:8888
   $
+  ok
+  install tensprflow on docker
+  $ docker pull tensorflow/tensorflow                  # Download latest image
+  $ docker run -it -p 8888:8888 tensorflow/tensorflow  # Start a Jupyter notebook server 
