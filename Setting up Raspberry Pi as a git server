@@ -10,6 +10,7 @@ Reference : https://dev.to/kodaman2/setting-up-raspberry-pi-as-a-git-server-230f
   Choose Finish 
   
 2. set Static IP in pi
+  ```
   $ sudo vim /etc/dhcpcd.conf
     and modify as following formate
     # Example static IP configuration
@@ -18,7 +19,8 @@ Reference : https://dev.to/kodaman2/setting-up-raspberry-pi-as-a-git-server-230f
     #static ip6_address=fd51:42f8:caae:d92e::ff/64
     static routers=192.168.0.1
     static domain_name_servers=192.168.0.1
-    
+  ```
+  
 3. set SSH Port (Optional)  default port: 22
    $ sudo vim  /etc/ssh/sshd_config 
    After changing the port:
