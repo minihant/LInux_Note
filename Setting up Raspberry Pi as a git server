@@ -1,7 +1,7 @@
 
-Reference : https://dev.to/kodaman2/setting-up-raspberry-pi-as-a-git-server-230f
+#Reference : https://dev.to/kodaman2/setting-up-raspberry-pi-as-a-git-server-230f
 
-1. Enable SSH in pi
+##1. Enable SSH in pi
   Enter ' $ sudo raspi-config ' in a terminal window
   Select Interfacing Options 
   Navigate to and select SSH 
@@ -9,7 +9,7 @@ Reference : https://dev.to/kodaman2/setting-up-raspberry-pi-as-a-git-server-230f
   Select Ok 
   Choose Finish 
   
-2. set Static IP in pi
+##2. set Static IP in pi
   ```
   $ sudo vim /etc/dhcpcd.conf
     and modify as following formate
