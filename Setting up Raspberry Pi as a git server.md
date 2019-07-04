@@ -91,12 +91,14 @@
     mkdir workDir
     cd WorkDir
     $ vgit clone pi@raspberrypi:/media/pi/WINPOS16G/newproj
-    * now you can begin to add files into this directory
-    * after that you can:
+    ```
+    ### * now you can begin to add files into this directory
+    ### * after that you can:
+      ```
       $ git add .     ## to tag the add/modify files
       $ git commit -m 'your change history message'  ## add change message to commit
       $ git push pi@raspberrypi:/media/pi/WINPOS16G/newproj
          or 
       $git push   
-    ```
+      ```
 ## 11. Test your setup
