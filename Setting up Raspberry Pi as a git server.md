@@ -1,5 +1,5 @@
-
-# Reference : https://dev.to/kodaman2/setting-up-raspberry-pi-as-a-git-server-230f
+# Setting up Raspberry Pi as a git server
+  ### Reference : https://dev.to/kodaman2/setting-up-raspberry-pi-as-a-git-server-230f
 
 ## 1. Enable SSH in pi
   ```
