@@ -67,10 +67,10 @@ Reference : https://dev.to/kodaman2/setting-up-raspberry-pi-as-a-git-server-230f
   b. in PC:
     mkdir workDir
     cd WorkDir
-    git clone pi@10.1.1.17:/media/pi/WINPOS16G/newproj
+    git clone pi@raspberrypi:/media/pi/WINPOS16G/newproj
     * now you can begin to add files into this directory
     * after that you can:
       $ git add .     ## to tag the add/modify files
       $ git commit
-      # git push pi@10.1.1.17:/media/pi/WINPOS16G/newproj
+      # git push pi@raspberrypi:/media/pi/WINPOS16G/newproj
 11. Test your setup
