@@ -30,6 +30,7 @@
     Public = yes
     Guest ok = yes
   ```
+   ### If you don’t want to allow guest users, omit the guest ok = yes line.
   
 ## Create a user and start Samba
   ```
