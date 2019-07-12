@@ -42,3 +42,4 @@ $ sudo nano ~/.bashrc
      $ sudo npm install forever-monitor
      $ forever start app.js
      ```
+     
