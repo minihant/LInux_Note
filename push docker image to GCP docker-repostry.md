@@ -1,9 +1,10 @@
 
+```
 $ sudo gcloud auth login
 $ sudo docker tag minihant/mqtt:1.0.2 gcr.io/winpos20190211/mymqtt$  
 $ sudo gcloud docker -- push gcr.io/winpos20190211/mqtt:1.0.2
 $ sudo gcloud docker -- pull gcr.io/winpos20190211/mqtt:1.0.2
-
+```
 
 Configuring SSL
 1.Create a private key
