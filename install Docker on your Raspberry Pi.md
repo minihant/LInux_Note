@@ -1,62 +1,49 @@
 # How to install Docker on your Raspberry Pi
 
-## the best way moving forward is to use a much simpler method and install directly from get.docker.com. See the example below.
+
+## a. Install the following prerequisites:
   ```
-  curl -sSL https://get.docker.com | sh
+  $ sudo apt-get install apt-transport-https ca-certificates software-properties-common -y
+  ```
+## b. Download and install Docker.
+  ```
+  $ curl -fsSL get.docker.com -o get-docker.sh && sh get-docker.sh
   ```
   
-## 1. Run apt-get update
+## c. Give the ‘pi’ user the ability to run Docker
+  ```
+  $ sudo usermod -aG docker pi
+  ```
+## d. Import Docker CPG key.
+  ```
+  $ sudo curl https://download.docker.com/linux/raspbian/gpg
+  ```
+## e. Setup the Docker Repo.
+  ```
+  $ vim /etc/apt/sources.list
+         Add the following line and save:   
+    deb https://download.docker.com/linux/raspbian/ stretch stable
+  ```  
+  
+## f. Patch and update your Pi.
   ```
   $ sudo apt-get update
+  $ sudo apt-get upgrade
   ```
-
-## 2. Install packages to allow apt to use a repository over HTTPS
+## g. Start the Docker service.
   ```
-  $ sudo apt-get install apt-transport-https \
-                         ca-certificates \
-                         software-properties-common
+  systemctl start docker.service
   ```
   
-## 3. Add Docker's GPG key
-
-  method 1:
+## h. To verify that Docker is installed and running.
   ```
-  $ curl -fsSL https://yum.dockerproject.org/gpg | sudo apt-key add -
+  docker info
   ```
-  Verify the correct key id:
-  ```
-  $ apt-key fingerprint 58118E89F3A912897C070ADBF76221572C52609D
-  ```
-  Set up the stable repository:
-  ```
-  $ sudo add-apt-repository \
-         "deb https://apt.dockerproject.org/repo/ \
-         raspbian-$(lsb_release -cs) \
-         main"
-  ```
-  
-  method 2 :
-  ### add the line directly to the sources.list file. See below:
-  ```
-  sudo vim /etc/apt/sources.list
-  ```
-  ### Append the following:
-  ```
-  https://apt.dockerproject.org/repo/ raspbian-RELEASE main
-  ```
-  ### Replace RELEASE with the Raspbian release you're using.
-  ### To find your release use:
-  ```
-  lsb_release -cs
-  ```
-  
-  ## 4. Install Docker
-  ```
-  $ sudo apt-get update
-  $ sudo apt-get -y install docker-engine
-  ```
-  
-  ## 5. Test docker
-  ```
-  $ sudo docker run hello-world
-  ```
+## i. You should now some information in regards to versioning, runtime,etc.
+5. Now that Docker has been installed on all of your Pi’s, we can now setup Docker Swarm.
+6. On one of your Pi devices that will be a master node, type the following:
+docker swarm init
+7. Once Docker initiates the swarm setup, you will be presented with a command to add additional worker nodes. Below is an example.
+docker swarm join --token SWMTKN-1-<token-key> 192.168.93.231:2377
+    a. on each worker node paste the text in step 7 
+8. To add additional manager nodes, the token and string will be different than the worker string. In order to discover the correct string to add manager nodes, do the following command on an existing working manager node.  
