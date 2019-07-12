@@ -89,3 +89,4 @@ mosquitto_pub -h <my-domain> -t test/topic -m test -p 8883 --capath /etc/ssl/cer
 ```
 wget https://letsencrypt.org/certs/isrgrootx1.pem openssl s_client -connect <my-domain>:8883 -CAfile isrgroot x1.pem
 ```
+
