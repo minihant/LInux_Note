@@ -110,4 +110,3 @@ docker start mynodered
 docker run -it -p 1880:1880 --name mynodered --link mybroker:broker nodered/node-red-docker
 ```
 - This will make broker a known hostname within the Node-RED container that can be used to access the service within a flow, without having to expose it outside of the Docker host.
-
