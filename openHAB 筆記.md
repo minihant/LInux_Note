@@ -12,17 +12,17 @@ sudo systemctl enable openhab2.service
 
 ### 2. Configuration openhab
 ```
-    Sudo nano /etc/default/openhab
+   $ Sudo nano /etc/default/openhab
 - Change USER_AND_GROUP=pi:pi
     Sudo nano /usr/lib/systemd/system/openhab.service
 - Change User = pi
 - Change Group=pi
-    Sudo systemctl daemon-reload
-    Sudo service openhab restart
-    Sudo nano /etc/openhab/configurations/items/home.items
+   $ Sudo systemctl daemon-reload
+   $ Sudo service openhab restart
+   $ Sudo nano /etc/openhab/configurations/items/home.items
 - Add
 - Switch RaspiLED{ gpio=”pin:4”}
-    Sudo nano /etc/openhab/configurations/sitemaps/home.sitemap
+   $ Sudo nano /etc/openhab/configurations/sitemaps/home.sitemap
 - Add
     sitemap home label=”HOME”
     {
