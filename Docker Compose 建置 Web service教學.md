@@ -36,13 +36,88 @@
   稱之為 Container，也就是我們一般用來提供 microservice 的最小單位。
   ```
   
-  ```
   # 這是一個創建 ubuntu 並安裝 nginx 的 image
+  ```
   FROM ubuntu:16.04 # 從 Docker hub 下載基礎的 image，可能是作業系統環境或是程式語言環境，這邊是 ubuntu 16.04
   MAINTAINER demo@gmail.com # 維護者
-
   RUN apt-get update # 執行 CMD 指令跑的指令，更新 apt 套件包資訊
   RUN apt-get install –y nginx # 執行 CMD 指令跑的指令，安裝 nginx
   CMD ["echo", "Nginx Image created"]
   ```
+  ## 透過 Docker 建立 Python Pageview App
+  ### 透過一個簡單 Python Flask + Redis 網頁人數統計的專案讓讀者可以更深刻理解 Docker Compose 的威力。
+  ### 1. 創建專案資料夾
+    ```
+    $ mkdir counter
+    $ cd counter
+    ```
+  ### 2. 在資料夾下建立 app.py 當做 web app 進入點
+  #### 當使用者瀏覽首頁時，redis 會記錄次數，若有 exception 則有 retry 機制
+    ```
+    import time
+    import redis
+    from flask import Flask
+
+    app = Flask(__name__)
+    cache = redis.Redis(host='redis', port=6379)
+
+    def get_hit_count():
+        retries = 5
+        while True:
+            try:
+                return cache.incr('hits')
+            except redis.exceptions.ConnectionError as exc:
+                if retries == 0:
+                    raise exc
+                retries -= 1
+                time.sleep(0.5)
+
+
+    @app.route('/')
+    def get_index():
+        count = get_hit_count()
+        return 'Yo! 你是第 {} 次瀏覽\n'.format(count)
+
+    if __name__ == "__main__":
+        app.run(host="0.0.0.0", debug=True)
+    ```
+  ### 3. 建立套件 requirements.txt 安裝資訊讓 Dockerfile 可以下指令安裝套件
+    ```
+    1. flask
+    1. redis
+    ```
+  ### 4. 建立 Web App 的 Dockerfile
+    ```
+    FROM python:3.4-alpine # 從 python3.4 基礎上加工
+    ADD . /code # 將本地端程式碼複製到 container 裡面 ./code 資料夾
+    WORKDIR /code # container 裡面的工作目錄
+    RUN pip install -r requirements.txt
+    CMD ["python", "app.py"]
+    ```
+  ### 5. 用 Docker Compose file 描述 services 運作狀況，我們的專案共有 web 和 redis 兩個 service
+    ```
+    version: '3'
+    services:
+    web:
+        build: .
+        ports:
+        - "5000:5000"
+        volumes:
+        - .:/code # 把當前資料夾 mount 掛載進去 container，這樣你可以直接在本地端專案資料夾改動檔案，container 裡面的檔案也會更動也不用重新         build image！
+    redis:
+        image: "redis:alpine" # 從 Docker Hub registry 來的 image
+    ```
+  ### 6. 用 Docker Compose 執行你的 Web app
+    ```
+    $ docker-compose up -d
+     -d detached 是在背景執行
+     
+    $ docker ps -a 觀看目前所有 docker container 狀況
+    $ docker-compose ps 觀看 docker-compose process 狀況
+    $ docker-compose down 終止並移除 container 
+    ```
+  ### 7. 到 http://127.0.0.1:5000/ 觀看成果
+  
+  
+  
   
