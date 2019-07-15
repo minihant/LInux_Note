@@ -72,7 +72,6 @@
                 retries -= 1
                 time.sleep(0.5)
 
-
     @app.route('/')
     def get_index():
         count = get_hit_count()
@@ -80,6 +79,7 @@
 
     if __name__ == "__main__":
         app.run(host="0.0.0.0", debug=True)
+        
     ```
   ### 3. 建立套件 requirements.txt 安裝資訊讓 Dockerfile 可以下指令安裝套件
     ```
