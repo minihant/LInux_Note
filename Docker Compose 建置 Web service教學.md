@@ -35,6 +35,10 @@
   ```
   稱之為 Container，也就是我們一般用來提供 microservice 的最小單位。
   ```
+  ### Install Docker compose
+  ```
+  $ sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  ```
   
   # 這是一個創建 ubuntu 並安裝 nginx 的 image
   ```
