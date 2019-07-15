@@ -41,6 +41,12 @@
   
   $ sudo chmod +x /usr/local/bin/docker-compose
   ```
+  or
+  ```
+  $ sudo apt-get install python-pip
+  $ sudo pip install docker-compose
+  ```
+  
   
   # 這是一個創建 ubuntu 並安裝 nginx 的 image
   ```
