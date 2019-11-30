@@ -1,7 +1,7 @@
 How to use Google Cloud Build
 https://cloud.google.com/cloud-build/docs/quickstart-docker?hl=zh-tw
 
-1. Build a new googlr project. for example "ubuntu-20190622"
+1. Build a new google project. for example "ubuntu-20190622"
 2. 新增 quickstart.sh
         ```
         #!/bin/sh
