@@ -1,0 +1,23 @@
+1. 安裝 NVM (Node Version Manager)
+   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.1/install.sh | bash
+
+2. 設定 NVM 環境變數
+   在 ~/.bash_profile,~/.bashrc, ~/.profile, 或 ~/.zshrc 設定環境變數
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # 讀取 NVM
+   設定完後，重新開啟 terminal 就可以使用 nvm 指令摟～
+
+3. 確認可以安裝版本清單
+   nvm ls-remote
+
+4.安裝指定版本 5.4.0 的 node.js
+  nvm install 5.4.0
+
+5. 指定 nvm 使用的 Node.js 版本
+   nvm use 5.4.0
+
+6. 預設使用 5.4.0 版本，否則每次重新連線登入，還需要重新 nvm use 一次
+   nvm alias default 5.4.0
+
+7. 安裝 NPM (Node Package Manager)
+   curl -L https://www.npmjs.com/install.sh | sh
