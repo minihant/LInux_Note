@@ -39,9 +39,9 @@ https://cloud.google.com/cloud-build/docs/quickstart-docker?hl=zh-tw
   ```
   steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'gcr.io/$ubuntu-20190622/quickstart-image', '.' ]
+    args: [ 'build', '-t', 'gcr.io/ubuntu-20190622/quickstart-image', '.' ]
   images:
-  - 'gcr.io/$ubuntu-20190622/quickstart-image'
+  - 'gcr.io/ubuntu-20190622/quickstart-image'
   ```
     開始創建 docker image
     ```
