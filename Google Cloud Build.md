@@ -1,3 +1,6 @@
+How to use Google Cloud Build
+https://cloud.google.com/cloud-build/docs/quickstart-docker?hl=zh-tw
+
 1. Build a new googlr project. for example "ubuntu-20190622"
 2. 新增 quickstart.sh
         ```
@@ -58,3 +61,4 @@
       ```
       
     *. 成功的話，結果會出現Hello World
+
