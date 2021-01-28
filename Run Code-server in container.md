@@ -1,4 +1,6 @@
-# build Code-server with container im WSL2
+# Build Code-server with container im WSL2
+
+> https://github.com/cdr/code-server/issues/1868
 
 ## 事實證明，添加自動UPNP防火牆端口映射非常容易，這樣它就可以通過NAT暴露出來，而無需手動配置路由器防火牆，而僅通過主機映射一個端口，就變得很愚蠢。
 
